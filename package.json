@@ -1,0 +1,24 @@
+{
+  "name": "simple-vpn",
+  "version": "1.0.0",
+  "description": "A simple GUI VPN client integrating OpenVPN",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install-deps": "npm install",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "electron": "^28.0.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.6.4"
+  },
+  "author": "VPN Developer",
+  "license": "MIT",
+  "keywords": ["vpn", "openvpn", "electron", "gui"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/simple-vpn.git"
+  }
+}

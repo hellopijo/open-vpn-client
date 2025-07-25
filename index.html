@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple VPN Client</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      min-width: 350px;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+
+    .status-container {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #007bff;
+    }
+
+    #status {
+      font-size: 1.3em;
+      font-weight: 500;
+      color: #495057;
+      margin-bottom: 10px;
+    }
+
+    .status-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    .status-disconnected {
+      background-color: #dc3545;
+    }
+
+    .status-connecting {
+      background-color: #ffc107;
+    }
+
+    .status-connected {
+      background-color: #28a745;
+    }
+
+    .status-error {
+      background-color: #dc3545;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    #connectBtn {
+      padding: 15px 40px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border: none;
+      color: #fff;
+      background: linear-gradient(45deg, #007bff, #0056b3);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      min-width: 200px;
+    }
+
+    #connectBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    }
+
+    #connectBtn:active {
+      transform: translateY(0);
+    }
+
+    #connectBtn.disconnect {
+      background: linear-gradient(45deg, #dc3545, #c82333);
+      box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    }
+
+    #connectBtn.disconnect:hover {
+      box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    }
+
+    #connectBtn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .info-text {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #6c757d;
+      line-height: 1.5;
+    }
+
+    .version {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 0.8em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simple VPN</h1>
+    
+    <div class="status-container">
+      <div id="status">
+        <span class="status-indicator status-disconnected"></span>
+        Disconnected
+      </div>
+      <div id="statusDetails" class="info-text">
+        Click the button below to connect to VPN
+      </div>
+    </div>
+    
+    <button id="connectBtn">Connect VPN</button>
+    
+    <div class="info-text">
+      One-click VPN connection with IP masking<br>
+      No configuration required
+    </div>
+  </div>
+  
+  <div class="version">v1.0.0</div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
